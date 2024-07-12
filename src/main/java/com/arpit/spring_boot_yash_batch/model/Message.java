@@ -4,7 +4,6 @@ public class Message {
 
     private String data;
 
-
     public String getData() {
         return this.data;
     }
@@ -13,5 +12,4 @@ public class Message {
         this.data = data;
     }
 
-    
 }
