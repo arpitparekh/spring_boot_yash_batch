@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> From Saperate HTML File</title>
-    <link rel="stylesheet" href="css/home.css"/>
-</head>
-<body>
+  <head>
+    <title>From Saperate HTML File</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+  </head>
+  <body>
     <h1 th:text="${message.data}"></h1>
-</body>
+  </body>
 </html>

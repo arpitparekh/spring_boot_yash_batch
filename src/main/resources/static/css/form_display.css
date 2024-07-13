@@ -1,0 +1,61 @@
+/* styles.css */
+
+/* Reset default margin and padding */
+body,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Center align text in <p> tags */
+p {
+    text-align: center;
+    margin-bottom: 10px;
+    /* Add some space between paragraphs */
+    font-size: 18px;
+    /* Larger font size */
+    color: #333;
+    /* Dark text color */
+}
+
+/* Style the <body> to have a subtle background */
+body {
+    background-color: #f2f2f2;
+    /* Light gray background */
+    font-family: 'Arial', sans-serif;
+    /* Use Arial as the font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Full viewport height */
+}
+
+/* Style the paragraphs */
+p {
+    background-color: #fff;
+    /* White background */
+    padding: 20px;
+    /* Padding inside paragraphs */
+    border-radius: 8px;
+    /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
+    max-width: 300px;
+    /* Limit paragraph width */
+    margin: 10px;
+    /* Margin around paragraphs */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+        /* Adjust padding for smaller screens */
+    }
+
+    p {
+        max-width: 100%;
+        /* Allow paragraphs to expand to full width */
+    }
+}

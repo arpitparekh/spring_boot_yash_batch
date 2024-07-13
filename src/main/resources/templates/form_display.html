@@ -1,0 +1,12 @@
+<html xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <title>Form Display</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/form_display.css}" />
+  </head>
+  <body>
+    <p th:text="${fromData.name}"></p>
+    <p th:text="${fromData.email}"></p>
+    <p th:text="${fromData.password}"></p>
+  </body>
+</html>
