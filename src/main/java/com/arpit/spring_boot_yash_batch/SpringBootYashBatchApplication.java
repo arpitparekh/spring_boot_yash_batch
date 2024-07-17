@@ -10,3 +10,4 @@ public class SpringBootYashBatchApplication {
 		SpringApplication.run(SpringBootYashBatchApplication.class, args);
 	}
 }
+	

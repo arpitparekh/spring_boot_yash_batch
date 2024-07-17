@@ -13,6 +13,7 @@ public class FromController {
     
     @GetMapping("/form")                              // get the page
     public String getForm(Model model) {
+
         model.addAttribute("fromData", new FormData());
         return "form";
     }
@@ -22,5 +23,4 @@ public class FromController {
         model.addAttribute("fromData",fromData);
         return "form_display";
     }
-
 }

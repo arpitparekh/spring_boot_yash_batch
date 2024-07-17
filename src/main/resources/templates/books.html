@@ -1,0 +1,23 @@
+<html xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <title>Book List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/table.css}" />
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Book Name</th>
+          <th>Book Author</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="book : ${books}">
+          <td th:text="${book.bookName}"></td>
+          <td th:text="${book.authorName}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
