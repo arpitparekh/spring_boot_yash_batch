@@ -1,0 +1,16 @@
+<html xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <title>Grocery List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/grocery.css}" />
+  </head>
+  <body>
+    <h3>Grocery List</h3>
+    <ol>
+      <li th:each="g : ${groceryList}">
+        <span>Name: </span><span th:text="${g.name}"></span><br />
+        <span>Quantity: </span><span th:text="${g.quantity}"></span><br />
+        <span>Price: </span><span th:text="${g.price}"></span><br />
+      </li>
+    </ol>
+  </body>
+</html>

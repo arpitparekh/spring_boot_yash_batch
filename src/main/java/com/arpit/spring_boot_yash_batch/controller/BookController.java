@@ -22,7 +22,6 @@ public class BookController {
         books.add(new Books("India @2020", "Abdul kalam"));
         books.add(new Books("Sherlock Holmes", "Arthur cannon doyle"));
         
-
         model.addAttribute("books", books);
 
         return "books";
