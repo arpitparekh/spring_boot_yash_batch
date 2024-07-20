@@ -14,7 +14,7 @@ public class GroceryController {
     @GetMapping("/grocery")
     public String grocery(Model model) {
 
-        ArrayList<Grocery> list = new ArrayList();
+        ArrayList<Grocery> list = new ArrayList<>();
         list.add(new Grocery("Vegitables", 20, 200));
         list.add(new Grocery("Ketchup", 2, 90));
         list.add(new Grocery("Oil", 20, 200));
@@ -22,8 +22,8 @@ public class GroceryController {
         list.add(new Grocery("Wheat", 40, 4000));
 
         model.addAttribute("groceryList", list);
-
+        
         return "grocery";
     }
-    
+
 }
