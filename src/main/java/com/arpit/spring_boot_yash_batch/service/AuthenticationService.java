@@ -18,6 +18,10 @@ public class AuthenticationService {
         return repository.findByEmail(email);
     }
 
+    public AuthenticationModel matchPassword(String password) {
+        return repository.findByPassword(password);
+    }
+
     public AuthenticationModel addData(AuthenticationModel model) {
         return repository.save(model);
     }
