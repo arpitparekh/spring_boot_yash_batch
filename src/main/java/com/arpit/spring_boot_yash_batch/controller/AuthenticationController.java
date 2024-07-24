@@ -17,7 +17,7 @@ public class AuthenticationController {
     AuthenticationService service;
 
     @GetMapping("/login")
-    public String showLogin() { 
+    public String showLogin() {
         return "login";
     }
 
@@ -35,9 +35,7 @@ public class AuthenticationController {
     public String login(@RequestParam String email, @RequestParam String password, Model model) {
 
         if (service.matchEmail(email) != null && service.matchPassword(password) != null) {
-
             return "redirect:/welcome";
-
         } else {
             model.addAttribute("error", "Wrong Credentials");
             return "login";

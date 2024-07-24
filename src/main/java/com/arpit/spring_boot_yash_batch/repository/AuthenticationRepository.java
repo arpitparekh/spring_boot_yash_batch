@@ -15,4 +15,5 @@ public interface AuthenticationRepository extends JpaRepository<AuthenticationMo
 
     // it is used to provide methods to do crud operations and 
     // database manupulation functions
+    
 }
