@@ -6,7 +6,7 @@
     <title>Add New Product</title>
     <style>
       body {
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: system-ui;
         margin: 0;
         padding: 0;
       }
@@ -61,6 +61,11 @@
         cursor: pointer;
         margin-top: 20px;
       }
+      .image-preview {
+        margin-top: 10px;
+        max-width: 100%;
+        max-height: 200px;
+      }
     </style>
   </head>
   <body>
@@ -102,8 +107,35 @@
           required
         />
 
+        <label for="productImage">Image:</label>
+        <input
+          type="file"
+          id="productImage"
+          name="productImage"
+          accept="image/*"
+          onchange="previewImage(event)"
+        />
+        <br />
+        <img
+          id="imagePreview"
+          class="image-preview"
+          src="#"
+          alt="-------------------------------------------------------  "
+        />
+        <br />
         <input type="submit" value="Add Product" />
       </form>
     </div>
+
+    <script>
+      function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+          var output = document.getElementById("imagePreview");
+          output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+      }
+    </script>
   </body>
 </html>

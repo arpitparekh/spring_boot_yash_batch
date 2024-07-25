@@ -40,7 +40,6 @@ public class AuthenticationController {
             model.addAttribute("error", "Wrong Credentials");
             return "login";
         }
-
     }
 
     @PostMapping("/register")
@@ -60,7 +59,5 @@ public class AuthenticationController {
 
             return "redirect:/login";
         }
-
     }
-
 }

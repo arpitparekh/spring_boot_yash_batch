@@ -1,5 +1,6 @@
 package com.arpit.spring_boot_yash_batch.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,9 +9,9 @@ import jakarta.persistence.Lob;
 
 @Entity
 public class Product {
-    
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
@@ -18,8 +19,8 @@ public class Product {
     private Double price;
 
     @Lob
-    private byte[] image;
-
+    @Column(name = "image", columnDefinition = "LONGBLOB")
+    private byte[] image; // New field for storing image data
 
     public Long getId() {
         return this.id;
@@ -61,6 +62,11 @@ public class Product {
         this.image = image;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Name " + name
+                + "Description " + description
+                + "Price " + price;
+    }
 
 }

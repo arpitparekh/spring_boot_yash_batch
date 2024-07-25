@@ -8,6 +8,7 @@ public class SpringBootYashBatchApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootYashBatchApplication.class, args);
+		System.out.println("Spring Boot Yash Batch Application Started...");
 	}
 }
 	
