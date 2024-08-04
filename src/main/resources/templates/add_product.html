@@ -121,9 +121,13 @@
           class="image-preview"
           src="#"
           alt="-------------------------------------------------------  "
+          th:src="@{'/add_product/image/' + ${product.id}}"
         />
         <br />
-        <input type="submit" value="Add Product" />
+        <input
+          type="submit"
+          th:value="${product.id == null ? 'Add Product' : 'Update Product'}"
+        />
       </form>
     </div>
 
