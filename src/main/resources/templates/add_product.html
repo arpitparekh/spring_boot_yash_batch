@@ -70,8 +70,10 @@
   </head>
   <body>
     <div class="header">
-      <h2>Add New Product</h2>
-      <a href="products" class="back-btn">Back to Product List</a>
+      <h2
+        th:text="${product.id == null ? 'Add New Product' : 'Update Product'}"
+      ></h2>
+      <a th:href="@{/products}" class="back-btn">Back to Product List</a>
     </div>
     <div class="content">
       <form
@@ -80,6 +82,7 @@
         th:object="${product}"
         enctype="multipart/form-data"
       >
+        <input type="hidden" th:field="*{id}" />
         <label for="productName">Name:</label>
         <input
           type="text"
@@ -130,7 +133,9 @@
         />
       </form>
     </div>
+    
 
+  
     <script>
       function previewImage(event) {
         var reader = new FileReader();

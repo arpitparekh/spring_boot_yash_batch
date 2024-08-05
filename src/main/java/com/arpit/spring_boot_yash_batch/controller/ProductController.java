@@ -26,18 +26,6 @@ public class ProductController {
     @Autowired
     ProductService service;
 
-    // @GetMapping("/product/image/{id}")
-    // public ResponseEntity<ByteArrayResource> getProductImage(@PathVariable Long id) {
-    //     Product product = service.getProductById(id);
-    //     if (product.getImage() != null) {
-    //         ByteArrayResource resource = new ByteArrayResource(product.getImage());
-    //         return ResponseEntity.ok()
-    //                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"image_" + id + ".jpg\"")
-    //                 .body(resource);
-    //     } else {
-    //         return ResponseEntity.notFound().build();
-    //     }
-    // }
     @GetMapping("/product/image/{id}")
     public ResponseEntity<ByteArrayResource> getImageDataOnList(@PathVariable Long id) {
 
@@ -90,7 +78,7 @@ public class ProductController {
     }
 
     @GetMapping("/add_product/{id}")
-    public String showAddProducts(@PathVariable Long id, Model model) { // mapping
+    public String showUpdateProducts(@PathVariable Long id, Model model) { // mapping
 
         Product product = service.getProductById(id);
 
@@ -98,28 +86,38 @@ public class ProductController {
         return "add_product";
     }
 
+    @PostMapping("/product/delete/{id}")
+    public String deleteProduct(@PathVariable Long id) {
+        service.deleteProduct(id);
+        return "redirect:/products";
+    }
+
     @PostMapping("/add_product")
-    public String addProduct(@ModelAttribute("product") Product product,
+    public String addOrUpdateProduct(@ModelAttribute("product") Product product,
             @RequestParam("productImage") MultipartFile file) throws IOException {
 
-        // Retrieve the existing product if it exists
         if (product.getId() != null) {
+
             Product existingProduct = service.getProductById(product.getId());
             if (existingProduct != null) {
-                // If a new image is uploaded, update the image
-                if (!file.isEmpty()) {
-                    product.setImage(file.getBytes());
-                } else {
-                    // Retain the existing image
-                    product.setImage(existingProduct.getImage());
-                }
-            }
-        } else if (!file.isEmpty()) {
-            // For new products, set the image if provided
-            product.setImage(file.getBytes());
-        }
 
-        service.saveProduct(product); // Save or update the product
+                existingProduct.setName(product.getName());
+                existingProduct.setDescription(product.getDescription());
+                existingProduct.setPrice(product.getPrice());
+
+                if (!file.isEmpty()) {
+                    existingProduct.setImage(file.getBytes());
+                }
+
+                service.saveProduct(existingProduct);
+            }
+        } else {
+
+            if (!file.isEmpty()) {
+                product.setImage(file.getBytes());
+            }
+            service.saveProduct(product);
+        }
 
         return "redirect:/products";
     }
