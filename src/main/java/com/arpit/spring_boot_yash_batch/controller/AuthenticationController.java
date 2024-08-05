@@ -56,8 +56,8 @@ public class AuthenticationController {
             auth.setPassword(password);
 
             service.addData(auth);
-
             return "redirect:/login";
+            
         }
     }
 }
