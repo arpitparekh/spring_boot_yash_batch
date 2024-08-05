@@ -11,4 +11,3 @@ public class SpringBootYashBatchApplication {
 		System.out.println("Spring Boot Yash Batch Application Started...");
 	}
 }
-	
