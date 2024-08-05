@@ -26,14 +26,49 @@ public class ProductController {
     @Autowired
     ProductService service;
 
+    // @GetMapping("/product/image/{id}")
+    // public ResponseEntity<ByteArrayResource> getProductImage(@PathVariable Long id) {
+    //     Product product = service.getProductById(id);
+    //     if (product.getImage() != null) {
+    //         ByteArrayResource resource = new ByteArrayResource(product.getImage());
+    //         return ResponseEntity.ok()
+    //                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"image_" + id + ".jpg\"")
+    //                 .body(resource);
+    //     } else {
+    //         return ResponseEntity.notFound().build();
+    //     }
+    // }
     @GetMapping("/product/image/{id}")
-    public ResponseEntity<ByteArrayResource> getProductImage(@PathVariable Long id) {
+    public ResponseEntity<ByteArrayResource> getImageDataOnList(@PathVariable Long id) {
+
         Product product = service.getProductById(id);
+
         if (product.getImage() != null) {
+
             ByteArrayResource resource = new ByteArrayResource(product.getImage());
+
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"image_" + id + ".jpg\"")
                     .body(resource);
+
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/add_product/image/{id}")
+    public ResponseEntity<ByteArrayResource> getImageDataOnAdd(@PathVariable Long id) {
+
+        Product product = service.getProductById(id);
+
+        if (product.getImage() != null) {
+
+            ByteArrayResource resource = new ByteArrayResource(product.getImage());
+
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"image_" + id + ".jpg\"")
+                    .body(resource);
+
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -54,26 +89,37 @@ public class ProductController {
         return "add_product";
     }
 
-    // @PostMapping("/add_product")
-    // public String addProduct(@ModelAttribute("product") ProductDTO productDTO) {
-    //     // if (!file.isEmpty()) {
-    //     //     try {
-    //     //         product.setImage(file.getBytes());
-    //     //     } catch (IOException e) {
-    //     //         System.out.println(e.getMessage());
-    //     //     }
-    //     // }
-    //     service.saveProduct(productDTO);
-    //     return "redirect:/products";
-    // }
+    @GetMapping("/add_product/{id}")
+    public String showAddProducts(@PathVariable Long id, Model model) { // mapping
+
+        Product product = service.getProductById(id);
+
+        model.addAttribute("product", product);
+        return "add_product";
+    }
+
     @PostMapping("/add_product")
     public String addProduct(@ModelAttribute("product") Product product,
             @RequestParam("productImage") MultipartFile file) throws IOException {
 
-        if (!file.isEmpty()) {
+        // Retrieve the existing product if it exists
+        if (product.getId() != null) {
+            Product existingProduct = service.getProductById(product.getId());
+            if (existingProduct != null) {
+                // If a new image is uploaded, update the image
+                if (!file.isEmpty()) {
+                    product.setImage(file.getBytes());
+                } else {
+                    // Retain the existing image
+                    product.setImage(existingProduct.getImage());
+                }
+            }
+        } else if (!file.isEmpty()) {
+            // For new products, set the image if provided
             product.setImage(file.getBytes());
         }
-        service.saveProduct(product);
+
+        service.saveProduct(product); // Save or update the product
 
         return "redirect:/products";
     }

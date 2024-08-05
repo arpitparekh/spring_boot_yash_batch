@@ -17,6 +17,7 @@ public class Product {
     private String name;
     private String description;
     private Double price;
+    private String path;
 
     @Lob
     @Column(name = "image", columnDefinition = "LONGBLOB")
@@ -65,6 +66,7 @@ public class Product {
     @Override
     public String toString() {
         return "Name " + name
+                + "Id " + id
                 + "Description " + description
                 + "Price " + price;
     }
