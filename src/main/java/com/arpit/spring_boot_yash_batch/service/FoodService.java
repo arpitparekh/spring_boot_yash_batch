@@ -30,5 +30,16 @@ public class FoodService {
     public void deleteFoodById(Long id) {
         repository.deleteById(id);
     }
+
+    public void updateFoodById(Long id, Food food) {
+
+        Optional<Food> foodData = repository.findById(id);
+        if (foodData.isPresent()) {
+            Food _food = foodData.get();
+            _food.setName(food.getName());
+            _food.setPrice(food.getPrice());
+            repository.save(_food);
+        }
+    }
     
 }

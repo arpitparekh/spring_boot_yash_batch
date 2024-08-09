@@ -45,7 +45,11 @@ public class FoodController {
     public ApiResponse deleteFoodById(@PathVariable Long id) {
         foodService.deleteFoodById(id);
         return new ApiResponse(200, "Success", "Data Deleted Successfully");
-
     }
 
+    @GetMapping("/update/{id}")
+    public ApiResponse updateFoodById(@PathVariable Long id, @RequestBody Food food) {
+        foodService.updateFoodById(id, food);
+        return new ApiResponse(200, "Success", "Data Updated Successfully");
+    }
 }
