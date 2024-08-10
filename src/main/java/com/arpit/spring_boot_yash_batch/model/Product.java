@@ -23,6 +23,7 @@ public class Product {
     @Column(name = "image", columnDefinition = "LONGBLOB")
     private byte[] image; // New field for storing image data
 
+
     public Long getId() {
         return this.id;
     }
@@ -55,6 +56,14 @@ public class Product {
         this.price = price;
     }
 
+    public String getPath() {
+        return this.path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     public byte[] getImage() {
         return this.image;
     }
@@ -62,6 +71,7 @@ public class Product {
     public void setImage(byte[] image) {
         this.image = image;
     }
+
 
     @Override
     public String toString() {
