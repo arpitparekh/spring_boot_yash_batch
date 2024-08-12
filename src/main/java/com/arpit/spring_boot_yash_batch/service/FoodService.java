@@ -31,13 +31,14 @@ public class FoodService {
         repository.deleteById(id);
     }
 
-    public void updateFoodById(Long id, Food food) {
+    public void updateFoodById(Food food) {
 
-        Optional<Food> foodData = repository.findById(id);
+        Optional<Food> foodData = repository.findById(food.getId());
         if (foodData.isPresent()) {
             Food _food = foodData.get();
             _food.setName(food.getName());
             _food.setPrice(food.getPrice());
+            _food.setQuantity(food.getQuantity());
             repository.save(_food);
         }
     }

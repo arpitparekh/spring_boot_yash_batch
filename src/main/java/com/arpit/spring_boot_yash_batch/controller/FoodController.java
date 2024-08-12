@@ -21,8 +21,8 @@ public class FoodController {
     FoodService foodService;
 
     @PostMapping("/add")
-    public Food addFood(@RequestBody Food food) {
-        return foodService.saveFood(food);
+    public ApiResponse addFood(@RequestBody Food food) {
+        return new ApiResponse(200, "Food Added Successfulyy", foodService.saveFood(food));
     }
 
     @GetMapping
@@ -47,9 +47,9 @@ public class FoodController {
         return new ApiResponse(200, "Success", "Data Deleted Successfully");
     }
 
-    @GetMapping("/update/{id}")
-    public ApiResponse updateFoodById(@PathVariable Long id, @RequestBody Food food) {
-        foodService.updateFoodById(id, food);
+    @GetMapping("/update")
+    public ApiResponse updateFoodById(@RequestBody Food food) {
+        foodService.updateFoodById(food);
         return new ApiResponse(200, "Success", "Data Updated Successfully");
     }
 }
