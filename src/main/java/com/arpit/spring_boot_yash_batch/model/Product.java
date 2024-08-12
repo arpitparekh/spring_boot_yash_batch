@@ -55,13 +55,6 @@ public class Product {
         this.price = price;
     }
 
-    public String getPath() {
-        return this.path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
 
     public byte[] getImage() {
         return this.image;
