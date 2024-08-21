@@ -22,11 +22,23 @@ public class Department {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL)
     private List<Employee> employees;
 
-    // Constructor
-    public Department(Long id, String name) {
+
+
+    public List<Employee> getEmployees() {
+        return this.employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
+
+    public Department(Long id, String name, List<Employee> employees) {
         this.id = id;
         this.name = name;
+        this.employees = employees;
     }
+    
 
     // Getters and Setters
     public Long getId() {
