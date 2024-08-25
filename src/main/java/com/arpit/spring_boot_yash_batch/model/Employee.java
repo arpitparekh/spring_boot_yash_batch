@@ -22,8 +22,7 @@ public class Employee {
     private Department department;  // foreign key
 
 
-    public Employee(Long id, String name, Department department) {
-        this.id = id;
+    public Employee(String name, Department department) {
         this.name = name;
         this.department = department;
     }
@@ -36,7 +35,7 @@ public class Employee {
     public void setDepartment(Department department) {
         this.department = department;
     }
-   
+
 
     // Getters and Setters
     public Long getId() {

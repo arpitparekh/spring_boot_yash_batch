@@ -23,7 +23,6 @@ public class Department {
     private List<Employee> employees;
 
 
-
     public List<Employee> getEmployees() {
         return this.employees;
     }
@@ -38,7 +37,7 @@ public class Department {
         this.name = name;
         this.employees = employees;
     }
-    
+
 
     // Getters and Setters
     public Long getId() {
