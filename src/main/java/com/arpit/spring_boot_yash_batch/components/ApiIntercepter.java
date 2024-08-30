@@ -14,8 +14,7 @@ public class ApiIntercepter implements HandlerInterceptor {
     private String apiKey;
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-            throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,  Object handler) throws Exception {
 
         String requestApiKey = request.getHeader("API-Key");
 
@@ -26,7 +25,5 @@ public class ApiIntercepter implements HandlerInterceptor {
             response.getWriter().write("Unauthorized: Invalid API Key");
             return false;
         }
-
     }
-
 }

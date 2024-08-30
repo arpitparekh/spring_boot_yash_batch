@@ -13,7 +13,6 @@ public class MasterSpringBoot implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(MasterSpringBoot.class, args);
-
     }
 
     @Override

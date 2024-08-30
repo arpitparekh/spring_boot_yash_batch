@@ -2,6 +2,8 @@ package com.arpit.spring_boot_yash_batch.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -20,6 +22,7 @@ public class Department {
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Employee> employees;
 
 
@@ -29,6 +32,11 @@ public class Department {
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+
+    public Department() {
+
     }
 
 
