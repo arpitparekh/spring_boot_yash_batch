@@ -13,7 +13,6 @@ public class ApiResponse {
         this.data = data;
     }
 
-
     public int getStatus() {
         return this.status;
     }
@@ -39,7 +38,7 @@ public class ApiResponse {
     }
 
     public ApiResponse() {
-        
+
     }
 
 }

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .container {
+      display: flex;
+      width: 100%;
+      max-width: 1200px;
+      justify-content: space-between;
+    }
+    .product-list, .add-product-form {
+      width: 45%;
+    }
+    .product-list {
+      border-right: 2px solid #ccc;
+      padding-right: 20px;
+    }
+    .product {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+    .product img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+    .product-details {
+      flex: 1;
+    }
+    .product-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    button {
+      padding: 5px 10px;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button.delete {
+      background-color: #FF5252;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Product List Section -->
+    <div class="product-list">
+      <h2>Product List</h2>
+      <div class="product" th:each="product : ${products}">
+        <img th:src="@{'/product_revision/image/' + ${product.id}}" alt="Product Image">
+        <div class="product-details">
+          <h4 th:text="${product.name}"></h4>
+          <p th:text="${product.price}">Price: $123</p>
+          <p th:text="${product.description}">Description of the product goes here.</p>
+        </div>
+        <div class="product-buttons">
+          <button class="update">Update</button>
+          <button class="delete">Delete</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Add Product Form Section -->
+    <div class="add-product-form">
+      <h2>Add Product</h2>
+      <form th:action="@{/product_revision}"
+        method="post"
+        th:object="${product}"
+        enctype="multipart/form-data">
+        <input type="text" placeholder="Product Name" th:field="*{name}" required >
+        <input type="number" placeholder="Product Price" th:field="*{price}" required>
+        <input type="file" id="myFile" name="myFile" accept="image/*">
+        <textarea placeholder="Product Description" rows="4" th:field="*{description}"></textarea>
+        <button type="submit">Add Product</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
