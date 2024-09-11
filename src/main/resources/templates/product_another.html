@@ -84,26 +84,40 @@
           <p th:text="${product.description}">Description of the product goes here.</p>
         </div>
         <div class="product-buttons">
-          <button class="update">Update</button>
-          <button class="delete">Delete</button>
+          <!-- Update Product Button -->
+          <form th:action="@{'/product_revision/update/' + ${product.id}}" method="post">
+            <button class="update">Update</button>
+          </form>
+          <!-- Delete Product Button -->
+          <form th:action="@{'/product_revision/delete/' + ${product.id}}" method="post">
+            <button type="submit" class="delete">Delete</button>
+          </form>
         </div>
       </div>
-
     </div>
 
-    <!-- Add Product Form Section -->
+    <!-- Add or Update Product Form Section -->
     <div class="add-product-form">
-      <h2>Add Product</h2>
-      <form th:action="@{/product_revision}"
-        method="post"
-        th:object="${product}"
-        enctype="multipart/form-data">
-        <input type="text" placeholder="Product Name" th:field="*{name}" required >
-        <input type="number" placeholder="Product Price" th:field="*{price}" required>
-        <input type="file" id="myFile" name="myFile" accept="image/*">
-        <textarea placeholder="Product Description" rows="4" th:field="*{description}"></textarea>
-        <button type="submit">Add Product</button>
-      </form>
+      <h2 th:text="${product.id != null ? 'Update Product' : 'Add Product'}">Add Product</h2>
+
+      <!-- Conditional Form for Update -->
+      <form th:if="${product.id != null}" th:action="@{/product_revision/update/{id}(id=${product.id})}" method="post" enctype="multipart/form-data">
+    <input type="text" th:value="${product.name}" name="name" placeholder="Product Name"/>
+    <input type="number" th:value="${product.price}" name="price" placeholder="Product Price"/>
+    <textarea name="description" th:value="${product.description}" placeholder="Product Description"></textarea>
+    <input type="file" name="myFile" />
+    <button type="submit">Update Product</button>
+</form>
+
+      <!-- Conditional Form for Create -->
+      <form th:if="${product.id == null}" th:action="@{/product_revision}" method="post" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Product Name"/>
+    <input type="number" name="price" placeholder="Product Price"/>
+    <textarea name="description" placeholder="Product Description"></textarea>
+    <input type="file" name="myFile" />
+    <button type="submit">Add Product</button>
+</form>
+
     </div>
   </div>
 

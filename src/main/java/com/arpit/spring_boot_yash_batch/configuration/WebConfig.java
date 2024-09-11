@@ -9,7 +9,7 @@ import com.arpit.spring_boot_yash_batch.components.ApiIntercepter;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer{
-    
+
     @Autowired
     ApiIntercepter intercepter;
 
@@ -17,5 +17,4 @@ public class WebConfig implements WebMvcConfigurer{
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(intercepter).addPathPatterns("/food/**");
     }
-
 }

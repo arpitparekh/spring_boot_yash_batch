@@ -7,10 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class MasterSpringBoot implements CommandLineRunner {
-
     @Autowired
     DB1 db1;
-
     public static void main(String[] args) {
         SpringApplication.run(MasterSpringBoot.class, args);
     }

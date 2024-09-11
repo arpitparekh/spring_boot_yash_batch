@@ -75,4 +75,12 @@ public class ProductAnother {
   }
 
 
+  @Override
+  public String toString() {
+    return "Name " + name
+            + "Id " + id
+            + "Description " + Description
+            + "Price " + price;
+  }
+
 }

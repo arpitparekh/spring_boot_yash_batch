@@ -32,9 +32,13 @@ public class ProductAnotherService {
     repo.deleteById(id);
   }
 
-  public Optional<ProductAnother> updateProduct(Long id) {
-    return repo.findById(id);
-  }
-  
+  public void updateProduct(ProductAnother product) {
+        if (repo.existsById(product.getId())) {
+            repo.save(product); // Save the updated product data
+        } else {
+            throw new RuntimeException("Product not found with ID: " + product.getId());
+        }
+    }
+
 
 }

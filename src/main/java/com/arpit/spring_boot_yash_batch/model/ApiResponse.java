@@ -1,10 +1,9 @@
 package com.arpit.spring_boot_yash_batch.model;
 
-
 public class ApiResponse {
     private int status;
     private String message;
-    private Object data;
+    private Object data = new Object();
 
 
     public ApiResponse(int status, String message, Object data) {
